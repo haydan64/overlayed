@@ -14,7 +14,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 400,
     height: 800,
-    transparent: false,
+    transparent: true,
     frame: false,
     icon: __dirname + "./img/icon.png",
     webPreferences: {
