@@ -23,6 +23,12 @@ function createWindow() {
     },
   });
 
+  //resize listener
+  const { ipcMain } = require('electron')
+  ipcMain.on('resize-me-please', (event, arg) => {
+    win.setSize(400, height)
+  })
+
   // load socket manager
   ipcMain.on("toMain", (event, data) => {
     console.log("DATA", data);

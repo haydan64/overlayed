@@ -79,6 +79,7 @@ function App() {
       >
         📌
       </button>
+      {users.length} Connected
       <div
         style={{
           WebkitAppRegion: "drag",
@@ -95,6 +96,7 @@ function App() {
             volume={Math.round(u.volume)}
             muted={u["voice_state"].mute || u["voice_state"]["self_mute"]}
             deafed={u["voice_state"].deaf || u["voice_state"]["self_deaf"]}
+            users={users.length}
           />
         ))}
       </div>

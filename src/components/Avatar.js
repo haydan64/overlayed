@@ -1,4 +1,4 @@
-const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted, deafed }) => {
+const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted, deafed, users}) => {
   console.log("\n\n" + muted + "\n\n");
   return (
     <div
