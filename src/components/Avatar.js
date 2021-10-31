@@ -1,4 +1,5 @@
 const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
+  console.log("\n\n"+muted+"\n\n");
   return (
     <div
       style={{
@@ -8,6 +9,7 @@ const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
         margin: "4px 0 4px 0",
       }}
     >
+      {isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "c1c1c1"}
       <div style={{
         width: "4px",
         height: volume/5+"px",
@@ -32,7 +34,7 @@ const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
       <p
         style={{
           /*color: isTalking ? "#fff" : "#c1c1c1",*/
-          color: isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "c1c1c1",
+          color: isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "#c1c1c1",
           fontSize: isTalking ? 24 : 20,
           background: "rgba(0,0,0,0.2)",
           padding: "4px 8px 8px 8px",
