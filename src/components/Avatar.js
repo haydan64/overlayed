@@ -1,5 +1,5 @@
-const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
-  console.log("\n\n"+muted+"\n\n");
+const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted, deafed }) => {
+  console.log("\n\n" + muted + "\n\n");
   return (
     <div
       style={{
@@ -9,10 +9,9 @@ const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
         margin: "4px 0 4px 0",
       }}
     >
-      {isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "c1c1c1"}
       <div style={{
         width: "4px",
-        height: volume/5+"px",
+        height: volume / 5 + "px",
         background: "green",
         "margin-right": "2px",
       }}><p> </p>
@@ -33,16 +32,26 @@ const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
       />
       <p
         style={{
-          /*color: isTalking ? "#fff" : "#c1c1c1",*/
-          color: isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "#c1c1c1",
+          color: isTalking ? "#fff" : "#c1c1c1",
+          /*color: isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "#c1c1c1",*/
           fontSize: isTalking ? 24 : 20,
           background: "rgba(0,0,0,0.2)",
           padding: "4px 8px 8px 8px",
           borderRadius: 10,
           margin: 0,
+          display: "flex",
+          "flex-direction": "row",
+          "white-space": "nowrap",
         }}
       >
-        {nick}
+        <span style={{
+          "margin-right": "2px",
+        }}>
+          {nick}
+        </span> <strike style={{
+          display: muted ? "block" : "none",
+          color: "#8b0000",
+        }}>🎤</strike> {deafed ? "🔇" : ""}
       </p>
     </div>
   );
