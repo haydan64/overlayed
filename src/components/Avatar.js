@@ -1,4 +1,4 @@
-const Avatar = ({ nick, userId, isTalking, avatarHash }) => {
+const Avatar = ({ nick, userId, isTalking, avatarHash, volume, muted }) => {
   return (
     <div
       style={{
@@ -8,6 +8,13 @@ const Avatar = ({ nick, userId, isTalking, avatarHash }) => {
         margin: "4px 0 4px 0",
       }}
     >
+      <div style={{
+        width: "4px",
+        height: volume/5+"px",
+        background: "green",
+        "margin-right": "2px",
+      }}><p> </p>
+      </div>
       <img
         onError={(e) => {
           e.target.onerror = null;
@@ -24,7 +31,8 @@ const Avatar = ({ nick, userId, isTalking, avatarHash }) => {
       />
       <p
         style={{
-          color: isTalking ? "#fff" : "#c1c1c1",
+          /*color: isTalking ? "#fff" : "#c1c1c1",*/
+          color: isTalking ? muted ? "#EE4B2B" : "#fff" : muted ? "#8b0000" : "c1c1c1",
           fontSize: isTalking ? 24 : 20,
           background: "rgba(0,0,0,0.2)",
           padding: "4px 8px 8px 8px",

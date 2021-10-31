@@ -84,12 +84,15 @@ function App() {
         }}
       >
         {users.map((u) => (
+          
           <Avatar
             key={u.user.id}
             nick={u.nick}
             userId={u.user.id}
             avatarHash={u.user.avatar}
             isTalking={u.isTalking}
+            volume={Math.round(u.volume)}
+            muted={u["voice_state"].mute || u["voice_state"]["self_mute"]}
           />
         ))}
       </div>
