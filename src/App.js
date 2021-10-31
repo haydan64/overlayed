@@ -66,6 +66,7 @@ function App() {
           return [...oldUsers, packet.data];
         });
       }
+      //mainWindow.setSize(200,50+ (user.length * 58));
     });
   }, []);
 
