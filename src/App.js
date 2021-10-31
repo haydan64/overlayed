@@ -14,6 +14,7 @@ function App() {
       // console.log(packet);
       if (packet.cmd === "GET_CHANNEL") {
         console.log("users", packet.data.voice_states);
+        window.electron.send("toMain", "RESIZE_" + packet.data.voice_states.length);
         setUsers(packet.data.voice_states);
       }
 
@@ -45,6 +46,7 @@ function App() {
       if (packet.cmd === "DISPATCH" && packet.evt === "VOICE_STATE_CREATE") {
         console.log("User is joining");
         setUsers((userList) => {
+          window.electron.send("toMain", "RESIZE_" + userList.length);
           return [...userList, packet.data];
         });
       }
@@ -52,8 +54,10 @@ function App() {
       // leave
       if (packet.cmd === "DISPATCH" && packet.evt === "VOICE_STATE_DELETE") {
         console.log("User is leaving");
-        setUsers((userList) =>
+        setUsers((userList) => {
+          window.electron.send("toMain", "RESIZE_" + userList.length);
           userList.filter((u) => u.user.id !== packet.data.user.id)
+        }
         );
       }
       
@@ -67,6 +71,8 @@ function App() {
         });
       }
       //mainWindow.setSize(200,50+ (user.length * 58));
+      //console.log(users);
+      
     });
   }, []);
 

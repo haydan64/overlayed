@@ -14,7 +14,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 400,
     height: 800,
-    transparent: true,
+    transparent: false,
     frame: false,
     icon: __dirname + "./img/icon.png",
     webPreferences: {
@@ -23,11 +23,6 @@ function createWindow() {
     },
   });
 
-  //resize listener
-  const { ipcMain } = require('electron')
-  ipcMain.on('resize-me-please', (event, arg) => {
-    win.setSize(400, height)
-  })
 
   // load socket manager
   ipcMain.on("toMain", (event, data) => {
@@ -45,6 +40,11 @@ function createWindow() {
       console.log("Toggle pin mode");
       isPinned = !isPinned;
       win.setAlwaysOnTop(isPinned, "screen");
+    }
+    if(data.includes("RESIZE")) {
+      let users = parseInt(data.split("_")[1]);
+      console.log("resize" + users);
+      win.setSize(400, 55 + (users * 64));
     }
   });
 
